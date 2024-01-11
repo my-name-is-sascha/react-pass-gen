@@ -2,10 +2,10 @@ import { useState, useCallback, useEffect } from 'react'
 import './App.css'
 
 function App() {
-  const [length, setLength] = useState(8)
-  const [numberAllowed, setNumberAllowed] = useState(false)
-  const [charAllowed, setCharAllowed] = useState(false)
-  const [password, setPassword] = useState('')
+  const [length, setLength] = useState<number>(8);
+  const [numberAllowed, setNumberAllowed] = useState<boolean>(false);
+  const [charAllowed, setCharAllowed] = useState<boolean>(false);
+  const [password, setPassword] = useState<string>('');
 
   //cache between re-reders
   const generatePassword = useCallback(() => {
