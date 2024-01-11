@@ -1,4 +1,4 @@
-import { useState, useCallback, useEffect } from 'react'
+import { useState, useCallback, useEffect, useRef } from 'react'
 import './App.css'
 
 function App() {
@@ -6,6 +6,8 @@ function App() {
   const [numberAllowed, setNumberAllowed] = useState<boolean>(false);
   const [charAllowed, setCharAllowed] = useState<boolean>(false);
   const [password, setPassword] = useState<string>('');
+
+  const passwordRef = useRef<HTMLInputElement>(null);
 
   //cache between re-reders
   const generatePassword = useCallback(() => {
@@ -25,6 +27,7 @@ function App() {
 
   const copyPasswordToClipboard = () => {
     window.navigator.clipboard.writeText(password);
+    passwordRef.current?.select();
   }
 
   useEffect(() => {
@@ -42,6 +45,7 @@ function App() {
           className='outline-none w-full py-1 px-3'
           placeholder='password'
           readOnly
+          ref={passwordRef}
         />
         <button 
           className='outline-none bg-blue-700 text-white px-3 py-0.5 shrink-0'
